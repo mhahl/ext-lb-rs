@@ -960,6 +960,7 @@ dependencies = [
  "k8s-openapi",
  "kube",
  "mustache",
+ "serde",
  "tokio",
 ]
 
