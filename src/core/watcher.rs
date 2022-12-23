@@ -22,7 +22,7 @@ pub(crate) async fn start(map: &mut BTreeMap<String, Service>) -> anyhow::Result
 
     pin_mut!(ew);
     while let Some(service) = ew.try_next().await? {
-        handle_service(client.clone(), service, map).await?;
+        handle_service(service, map).await?;
     }
 
     Ok(())
@@ -80,7 +80,6 @@ async fn reconcile(map: &BTreeMap<String, Service>) -> anyhow::Result<()> {
  * Handle the service event.
  */
 async fn handle_service(
-    client: Client,
     event: Event<Service>,
     map: &mut BTreeMap<String, Service>,
 ) -> anyhow::Result<()> {
